@@ -11,6 +11,7 @@
         AllowsTransparency="True"
         Background="Transparent"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    
     <Canvas Width="650" Height="400">
         <Path Stroke="Gray" StrokeThickness="2" Name="UIPath" Height="400" Stretch="Fill" Width="650">
             <Path.Fill>
@@ -45,14 +46,25 @@
 
         <DataGrid x:Name="dataGridPhones" Width="550" Canvas.Left="50" Canvas.Top="60" Height="280" ItemsSource="{Binding listaTelefona}" AutoGenerateColumns="False" FontSize="15">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}"/>
-                <DataGridTextColumn Header="RedBroj" Binding="{Binding RedniBroj}" Width="*"/>
+                <DataGridTemplateColumn Header="Image">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Image}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTextColumn Header="Model" Binding="{Binding Model}"/>
+                <DataGridTextColumn Header="Napravljen" Binding="{Binding Napravljen}"/>
+                <DataGridTextColumn Header="PrvaCena" Binding="{Binding PrvaCena}"/>
+                <DataGridTextColumn Header="TrenutnaCena" Binding="{Binding TrenutnaCena}" Width="*"/>
+                
             </DataGrid.Columns>
         </DataGrid>
 
         <Button x:Name="btnDodaj" Content="Dodaj" Canvas.Left="250" Canvas.Top="355" Height="30" Width="150" FontSize="15"/>
-        <Button x:Name="btnExit" Width="40" Height="35" Canvas.Left="440" Canvas.Top="10">
-            <Image Source="Pictures/exitbtn.png"/>
+        <Button x:Name="btnExit" Width="40" Height="39" Canvas.Left="440" Canvas.Top="10" Background="Transparent" Margin="0,0,0,0" BorderBrush="Transparent" Click="btnExit_Click">
+            <Image Source="Photo/btnclose.png" Width="40" Height="39"/> 
         </Button>
     </Canvas>
 </Window>

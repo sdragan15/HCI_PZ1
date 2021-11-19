@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Classes;
 
 namespace HCI_PZ1
 {
@@ -20,7 +22,8 @@ namespace HCI_PZ1
     /// </summary>
     public partial class MainWindow : Window
     {
-        //public static BindingList<Telefon> listaTelefona { get; set; }
+        public static BindingList<Telefon> listaTelefona { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,6 +33,11 @@ namespace HCI_PZ1
         {
             this.DragMove();
 
+        }
+
+        private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
