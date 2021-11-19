@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Classes;
 
 namespace HCI_PZ1
 {
@@ -19,12 +20,147 @@ namespace HCI_PZ1
         public AddWindow()
         {
             InitializeComponent();
+
+            cmbDrzave.ItemsSource = Constants.Drzave;
         }
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
         {
+            if (validate())
+            {
+                Telefon t1 = new Telefon();
+                t1.RedniBroj = ++Constants.redniBrojTelefona;
+                t1.Naziv = tbModel.Text;
+                t1.Drzava = cmbDrzave.SelectedItem.ToString();
+                t1.GodinaProizvodnje = dpDate.SelectedDate.Value;
+                //t1.Slika = imSlika.Source.ToString();
 
+                MainWindow.listaTelefona.Add(t1);
+
+                this.Close();
+            }
         }
+
+
+        public bool validate()
+        {
+            bool valid = true;
+
+            if (tbModel.Text.Trim().Equals(""))
+            {
+                valid = false;
+                errNaziv.Content = "Niste uneli naziv";
+                errNaziv.Foreground = Brushes.Red;
+            }
+            else
+            {
+                errNaziv.Content = "";
+            }
+
+            if(cmbDrzave.SelectedItem == null)
+            {
+                valid = false;
+                errLabel.Content = "Izaberite drzavu";
+                errLabel.Foreground = Brushes.Red;
+            }
+            else
+            {
+                errLabel.Content = "";
+            }
+
+            if(dpDate.SelectedDate == null)
+            {
+                valid = false;
+                dpDate.Foreground = Brushes.Red;
+            }
+            else
+            {
+                dpDate.Foreground = Brushes.Black;
+            }
+
+            /*if(imSlika.Source == null)
+            {
+                valid = false;
+                errSlika.Content = "Izaberi sliku";
+                errSlika.Foreground = Brushes.Red;
+            }
+            else
+            {
+                errSlika.Content = "";
+            }*/
+
+            return valid;
+        }
+
+
+        private void tbModel_GotFocus(object sender, RoutedEventArgs e)
+        {
+            errNaziv.Content = "";
+        }
+
+        private void tbModel_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (tbModel.Text.Trim().Equals(""))
+            {
+                errNaziv.Foreground = Brushes.Gray;
+                errNaziv.Content = "Unesite naziv telefona";
+            }
+        }
+
+
+        private void cmbDrzave_GotFocus(object sender, RoutedEventArgs e)
+        {
+            errLabel.Content = "";
+        }
+
+        private void cmbDrzave_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (cmbDrzave.SelectedItem == null)
+            {
+                errLabel.Foreground = Brushes.Gray;
+                errLabel.Content = "Izaberi drzavu";
+            }
+        }
+
+        private void dpDate_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            dpDate.Foreground = Brushes.Black;
+        }
+
+        private void dpDate_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if(dpDate.SelectedDate != null)
+            {
+                dpDate.Foreground = Brushes.Black;
+            }
+        }
+
+        private void dpDate_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (dpDate.SelectedDate != null)
+            {
+                dpDate.Foreground = Brushes.Black;
+            }
+        }
+
+        private void imSlika_GotFocus(object sender, RoutedEventArgs e)
+        {
+            errSlika.Content = "";
+        }
+
+        private void imSlika_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(imSlika.Source == null)
+            {
+                errSlika.Content = "Izaberi sliku";
+                errSlika.Foreground = Brushes.Gray;
+            }
+        }
+
+
+
+
+
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
@@ -35,5 +171,8 @@ namespace HCI_PZ1
         {
             this.DragMove();
         }
+
+
+       
     }
 }

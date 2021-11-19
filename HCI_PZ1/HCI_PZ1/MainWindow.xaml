@@ -44,21 +44,28 @@
             </Path.Data>
         </Path>
 
-        <DataGrid x:Name="dataGridPhones" Width="550" Canvas.Left="50" Canvas.Top="60" Height="280" ItemsSource="{Binding listaTelefona}" AutoGenerateColumns="False" FontSize="15">
+        <DataGrid x:Name="dataGridPhones" Width="550" Canvas.Left="50" Canvas.Top="60" Height="280" ItemsSource="{Binding listaTelefona}" AutoGenerateColumns="False" CanUserAddRows="False" RowHeight="50" >
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Image">
+                <DataGridTextColumn Header="Br." Binding="{Binding RedniBroj}" Width="100"/>
+                <DataGridTemplateColumn Header="Image" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding Image}"/>
+                            <Image Source="{Binding Slika}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
-                <DataGridTextColumn Header="Model" Binding="{Binding Model}"/>
-                <DataGridTextColumn Header="Napravljen" Binding="{Binding Napravljen}"/>
-                <DataGridTextColumn Header="PrvaCena" Binding="{Binding PrvaCena}"/>
-                <DataGridTextColumn Header="TrenutnaCena" Binding="{Binding TrenutnaCena}" Width="*"/>
-                
+
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="100">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Proizveden" Binding="{Binding GodinaProizvodnje}" Width="100"/>
+                <DataGridTextColumn Header="Drzava" Binding="{Binding Drzava}" Width="*"/> 
+
             </DataGrid.Columns>
         </DataGrid>
 

@@ -8,11 +8,11 @@ namespace Classes
 {
     public class Telefon
     {
-        public string Model { get; set; }
-        public DateTime Napravljen { get; set; }
-        public int PrvaCena { get; set; }
-        public int TrenutnaCena { get; set; }
-        public string Image { get; set; }
-        public string filePath { get; set; }
+        public int RedniBroj { get; set; }
+        public string Naziv { get; set; }
+        public DateTime GodinaProizvodnje { get; set; }
+        public string Drzava { get; set; }
+        public string Opis { get; set; }
+        public string Slika { get; set; }
     }
 }
