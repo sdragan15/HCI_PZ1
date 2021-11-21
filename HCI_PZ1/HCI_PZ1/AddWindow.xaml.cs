@@ -33,7 +33,9 @@ namespace HCI_PZ1
                 t1.Naziv = tbModel.Text;
                 t1.Drzava = cmbDrzave.SelectedItem.ToString();
                 t1.GodinaProizvodnje = dpDate.SelectedDate.Value;
-                //t1.Slika = imSlika.Source.ToString();
+                t1.Slika = AddPhoto.uriSlike;
+
+                AddPhoto.uriSlike = "";
 
                 MainWindow.listaTelefona.Add(t1);
 
@@ -78,16 +80,17 @@ namespace HCI_PZ1
                 dpDate.Foreground = Brushes.Black;
             }
 
-            /*if(imSlika.Source == null)
+            if (AddPhoto.uriSlike.Equals(""))
             {
                 valid = false;
-                errSlika.Content = "Izaberi sliku";
+                errSlika.Content = "Izaberite sliku";
                 errSlika.Foreground = Brushes.Red;
             }
             else
             {
                 errSlika.Content = "";
-            }*/
+                errSlika.Foreground = Brushes.Gray;
+            }
 
             return valid;
         }
@@ -149,7 +152,20 @@ namespace HCI_PZ1
             AddPhoto addPhoto = new AddPhoto();
             addPhoto.ShowDialog();
 
-            imgSlika.Source = new BitmapImage(new Uri(AddPhoto.uriSlike));
+            try
+            {
+                imgSlika.Source = new BitmapImage(new Uri(AddPhoto.uriSlike));
+                errSlika.Content = "";
+                errSlika.Foreground = Brushes.Gray;
+            }
+            catch(Exception ex)
+            {
+                errSlika.Content = "Izaberite sliku";
+                errSlika.Foreground = Brushes.Red;
+                imgSlika.Source = null;
+                AddPhoto.uriSlike = "";
+            }
+            
         }
 
 

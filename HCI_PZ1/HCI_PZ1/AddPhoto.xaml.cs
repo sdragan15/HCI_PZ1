@@ -20,11 +20,34 @@ namespace HCI_PZ1
     public partial class AddPhoto : Window
     {
         public static bool valid = false;
-        public static string uriSlike;
+        public static string uriSlike = "";
 
         public AddPhoto()
         {
             InitializeComponent();
+
+            if (uriSlike.Equals(""))
+            {
+                imgSlika.Source = null;
+                valid = false;
+            }
+            else
+            {
+                tbSlika.Text = uriSlike;
+                errSlika.Content = "";
+                errSlika.Foreground = Brushes.Gray;
+
+                try
+                {
+                    imgSlika.Source = new BitmapImage(new Uri(uriSlike));
+                    valid = true;
+                }
+                catch (Exception ex)
+                {
+                    valid = false;
+                }
+            }
+            
         }
 
        
@@ -56,7 +79,18 @@ namespace HCI_PZ1
             else
             {
                 uriSlike = "";
+                this.Close();
             }
+        }
+
+        private void tbSlika_GotFocus(object sender, RoutedEventArgs e)
+        {
+            errSlika.Content = "";
+        }
+
+        private void tbSlika_LostFocus(object sender, RoutedEventArgs e)
+        {
+            errSlika.Content = "link slike:";
         }
 
 
@@ -72,6 +106,6 @@ namespace HCI_PZ1
             this.DragMove();
         }
 
-        
+       
     }
 }

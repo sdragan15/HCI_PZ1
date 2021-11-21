@@ -46,7 +46,7 @@
 
         <Button x:Name="btnClose" Content="Exit" Width="30" Height="30" Canvas.Left="200" Canvas.Top="25" Click="btnClose_Click"/>
 
-        <TextBox x:Name="tbSlika" Width="120" Height="30" Canvas.Left="65" Canvas.Top="120" SelectionChanged="tbSlika_SelectionChanged"/>
+        <TextBox x:Name="tbSlika" Width="120" Height="30" Canvas.Left="65" Canvas.Top="120" SelectionChanged="tbSlika_SelectionChanged" GotFocus="tbSlika_GotFocus" LostFocus="tbSlika_LostFocus"/>
         <Label Name="errSlika" Content="link slike:" Width="120" Height="30" Canvas.Left="65" Canvas.Top="120" HorizontalContentAlignment="Center" Foreground="Gray" IsHitTestVisible="False"/>
 
         <Border BorderThickness="2" BorderBrush="Black" Width="130" Height="90" Canvas.Left="60" Canvas.Top="20">
