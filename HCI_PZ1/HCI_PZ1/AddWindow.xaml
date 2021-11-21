@@ -67,9 +67,11 @@
 
             <DatePicker x:Name="dpDate" Height="30" Margin="88,203,135,12" Foreground="Black" GotKeyboardFocus="dpDate_GotKeyboardFocus" LostKeyboardFocus="dpDate_LostKeyboardFocus" LostFocus="dpDate_LostFocus"/>
 
-            <Border Margin="248,157,10,10" BorderThickness="2" BorderBrush="Gray">
-                <Image x:Name="imSlika" GotFocus="imSlika_GotFocus" LostFocus="imSlika_LostFocus"/>
-            </Border>
+            
+            <Image x:Name="imgSlika" Source="Photo/btnclose.png" Margin="248,157,10,12" IsHitTestVisible="False" Stretch="Uniform"/>
+            <Button x:Name="btnSlika" Margin="248,157,10,12" Background="Transparent" Click="btnSlika_Click" BorderBrush="Black" BorderThickness="1">
+            </Button>
+            
             <Label Name="errSlika" Margin="252,180,10,26" Content="Izaberi sliku" Foreground="Gray" IsHitTestVisible="False"/>
 
 

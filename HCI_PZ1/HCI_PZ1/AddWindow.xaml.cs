@@ -143,18 +143,13 @@ namespace HCI_PZ1
             }
         }
 
-        private void imSlika_GotFocus(object sender, RoutedEventArgs e)
-        {
-            errSlika.Content = "";
-        }
 
-        private void imSlika_LostFocus(object sender, RoutedEventArgs e)
+        private void btnSlika_Click(object sender, RoutedEventArgs e)
         {
-            if(imSlika.Source == null)
-            {
-                errSlika.Content = "Izaberi sliku";
-                errSlika.Foreground = Brushes.Gray;
-            }
+            AddPhoto addPhoto = new AddPhoto();
+            addPhoto.ShowDialog();
+
+            imgSlika.Source = new BitmapImage(new Uri(AddPhoto.uriSlike));
         }
 
 
@@ -172,7 +167,6 @@ namespace HCI_PZ1
             this.DragMove();
         }
 
-
-       
+        
     }
 }
