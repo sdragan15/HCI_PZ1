@@ -12,8 +12,8 @@
         Background="Transparent"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         FontSize="14">
-    <Canvas Width="250" Height="200">
-        <Path Stroke="Gray" StrokeThickness="2" Name="UIPath" Height="200" Stretch="Fill" Width="250">
+    <Canvas Width="300" Height="260">
+        <Path Stroke="Gray" StrokeThickness="2" Name="UIPath" Height="260" Stretch="Fill" Width="300">
             <Path.Fill>
                 <SolidColorBrush Color="White"/>
             </Path.Fill>
@@ -44,17 +44,19 @@
             </Path.Data>
         </Path>
 
-        <Button x:Name="btnClose" Content="Exit" Width="30" Height="30" Canvas.Left="200" Canvas.Top="25" Click="btnClose_Click"/>
+        <Button x:Name="btnClose" Content="Exit" Width="30" Height="30" Canvas.Left="195" Canvas.Top="10" Click="btnClose_Click"/>
 
-        <TextBox x:Name="tbSlika" Width="120" Height="30" Canvas.Left="65" Canvas.Top="120" SelectionChanged="tbSlika_SelectionChanged" GotFocus="tbSlika_GotFocus" LostFocus="tbSlika_LostFocus"/>
-        <Label Name="errSlika" Content="link slike:" Width="120" Height="30" Canvas.Left="65" Canvas.Top="120" HorizontalContentAlignment="Center" Foreground="Gray" IsHitTestVisible="False"/>
+        <TextBox x:Name="tbSlika" Width="106" Height="30" Canvas.Left="24" Canvas.Top="168" SelectionChanged="tbSlika_SelectionChanged" GotFocus="tbSlika_GotFocus" LostFocus="tbSlika_LostFocus"/>
+        <Label Name="errSlika" Content="link slike:" Width="106" Height="30" Canvas.Left="24" Canvas.Top="168" HorizontalContentAlignment="Center" Foreground="Gray" IsHitTestVisible="False"/>
 
-        <Border BorderThickness="2" BorderBrush="Black" Width="130" Height="90" Canvas.Left="60" Canvas.Top="20">
-            <Image x:Name="imgSlika" Width="125" Height="85" Margin="-2" Stretch="Uniform"/>
+        <Border BorderThickness="2" BorderBrush="Black" Width="155" Height="109" Canvas.Left="70" Canvas.Top="45">
+            <Image x:Name="imgSlika" Margin="2" Stretch="Uniform"/>
         </Border>
 
 
-        <Button x:Name="btnDodaj" Content="Dodaj" Width="100" Height="30" Canvas.Left="75" Canvas.Top="158" Click="btnDodaj_Click"/>
+        <Button x:Name="btnDodaj" Content="Dodaj" Width="100" Height="30" Canvas.Left="100" Canvas.Top="215" Click="btnDodaj_Click"/>
+        <Button x:Name="btnBrowse" Content="Browse" Width="100" Height="30" Canvas.Left="170" Canvas.Top="168" Click="btnBrowse_Click"/>
+        <Label Name="lbOr" Content="or" Width="30" Height="30" Canvas.Left="135" Canvas.Top="169" HorizontalContentAlignment="Center"/>
 
     </Canvas>
 </Window>

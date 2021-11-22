@@ -69,11 +69,11 @@
             </Setter>
         </Style>
     </Window.Resources>
-    
-    
-    
-    <Canvas Width="400" Height="340">
-        <Path Stroke="Gray" StrokeThickness="2" Name="UIPath" Height="340" Stretch="Fill" Width="400">
+
+
+
+    <Canvas Width="500" Height="400">
+        <Path Stroke="Gray" StrokeThickness="2" Name="UIPath" Height="400" Stretch="Fill" Width="500">
             <Path.Fill>
                 <SolidColorBrush Color="White"/>
             </Path.Fill>
@@ -103,44 +103,60 @@
                 </PathGeometry>
             </Path.Data>
         </Path>
-        <Grid Width="349" Height="245" Canvas.Top="40" Canvas.Left="21">
-            <Label Name="nazivModela" Width="70" Height="30" Canvas.Left="30" Canvas.Top="65" Content="Naziv:" Margin="0,10,270,205"/>
-            <Label Name="lbOpis" Width="70" Height="30" Margin="0,47,270,123" Content="Opis:"/>
-            <Label Name="lbDrzave" Height="30" Content="Drzava:" Margin="0,157,270,58"/>
-            <Label Name="lbDatum" Height="30" Margin="0,202,266,13" Content="Proizveden:"/>
+        <Grid Width="440" Height="295" Canvas.Top="40" Canvas.Left="21">
+            <Label Name="nazivModela" Height="30" Canvas.Left="30" Canvas.Top="65" Content="Naziv:" Margin="0,12,357,253"/>
+            <Label Name="lbOpis" Height="30" Margin="0,104,357,161" Content="Opis:"/>
+            <Label Name="lbDrzave" Height="30" Content="Drzava:" Margin="0,200,352,65"/>
+            <Label Name="lbDatum" Height="30" Margin="0,254,352,11" Content="Proizveden:"/>
 
-            <TextBox x:Name="tbModel" Width="261" Height="30" Canvas.Left="105" Canvas.Top="65" HorizontalAlignment="Left" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" TextAlignment="Center" Margin="88,10,0,0" Foreground="Black" GotFocus="tbModel_GotFocus" LostFocus="tbModel_LostFocus"/>
+            <TextBox x:Name="tbModel" Width="352" Height="30" Canvas.Left="105" Canvas.Top="65" HorizontalAlignment="Left" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" TextAlignment="Center" Margin="88,10,0,0" Foreground="Black" GotFocus="tbModel_GotFocus" LostFocus="tbModel_LostFocus"/>
             <Label x:Name="errNaziv" Margin="88,12,0,205" Content="Unesite naziv telefona" Foreground="Gray" HorizontalAlignment="Center" IsHitTestVisible="False"/>
 
-            <DockPanel Margin="88,47,0,93" Background="Gray" >
+            <DockPanel Margin="88,47,0,113" Background="Gray" >
                 <ToolBar DockPanel.Dock="Top">
-                    <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold" Content="Bold"/>
+                    <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold" Width="20" Content="B"/>
                     <Separator/>
-                    <ComboBox Name="cmbFontFamily" Width="100"/>
+                    <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic" Width="20" Height="25" Content="I"/>
+                    <Separator/>
+                    <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline" Width="20" Height="25" Content="U"/>
+                    <Separator/>
+                    <ComboBox Name="cmbFontFamily" Width="90" SelectionChanged="cmbFontFamily_SelectionChanged" Margin="0"/>
+                    <Separator/>
+                    <ComboBox Name="cmbFontSize" Width="30" Height="25" SelectionChanged="cmbFontSize_SelectionChanged" Margin="0"/>
+                    <Separator/>
+                    <ComboBox x:Name="cmbColor" Width="50" Height="25" SelectionChanged="cmbColor_SelectionChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Rectangle Fill="{Binding }" Height="20" Width="50" Margin="0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </ToolBar>
 
-                <RichTextBox x:Name="rtbEditor" Margin="3,2,3,1" Width="254" Height="72"/>
+                <RichTextBox x:Name="rtbEditor" Margin="3,0" Width="350" Height="100" SelectionChanged="rtbEditor_SelectionChanged"/>
             </DockPanel>
 
-            <ComboBox x:Name="cmbDrzave" Margin="88,162,135,54" GotFocus="cmbDrzave_GotFocus" LostFocus="cmbDrzave_LostFocus"/>
-            <Label x:Name="errLabel" Margin="88,162,150,55" Content="Izaberite drzavu" Foreground="Gray" HorizontalAlignment="Center" IsHitTestVisible="False"/>
+            <ComboBox x:Name="cmbDrzave" Margin="88,202,175,65" GotFocus="cmbDrzave_GotFocus" LostFocus="cmbDrzave_LostFocus"/>
+            <Label x:Name="errLabel" Margin="88,202,194,65" Content="Izaberite drzavu" Foreground="Gray" HorizontalAlignment="Center" IsHitTestVisible="False" Width="158"/>
 
-            <DatePicker x:Name="dpDate" Height="30" Margin="88,203,135,12" Foreground="Black" GotKeyboardFocus="dpDate_GotKeyboardFocus" LostKeyboardFocus="dpDate_LostKeyboardFocus" LostFocus="dpDate_LostFocus"/>
+            <DatePicker x:Name="dpDate" Height="30" Margin="88,255,175,10" Foreground="Black" GotKeyboardFocus="dpDate_GotKeyboardFocus" LostKeyboardFocus="dpDate_LostKeyboardFocus" LostFocus="dpDate_LostFocus"/>
 
 
-            <Image x:Name="imgSlika" Margin="248,157,10,12" IsHitTestVisible="False" Stretch="Uniform"/>
-            <Button x:Name="btnSlika" Margin="248,157,10,12" Background="Transparent" Click="btnSlika_Click" BorderBrush="Black" BorderThickness="1" Style="{DynamicResource imageButton}">
+            <Image x:Name="imgSlika" Margin="280,187,0,0" IsHitTestVisible="False" Stretch="Uniform"/>
+            <Button x:Name="btnSlika" Margin="280,187,0,0" Background="Transparent" Click="btnSlika_Click" BorderBrush="Black" BorderThickness="1" Style="{DynamicResource imageButton}">
             </Button>
 
-            <Label Name="errSlika" Margin="252,180,10,26" Content="Izaberi sliku" Foreground="Gray" IsHitTestVisible="False"/>
+            <Label Name="errSlika" Margin="280,224,0,43" Content="Izaberite sliku" Foreground="Gray" IsHitTestVisible="False" HorizontalContentAlignment="Center"/>
 
 
         </Grid>
 
 
-        <Button x:Name="btnDodaj" Width="150" Height="30" Content="Dodaj" Canvas.Left="130" Canvas.Top="295" Click="btnDodaj_Click"/>
+        <Button x:Name="btnDodaj" Width="150" Height="30" Content="Dodaj" Canvas.Left="180" Canvas.Top="355" Click="btnDodaj_Click"/>
 
-        <Button x:Name="btnExit" Width="30" Height="30" Canvas.Left="265" Canvas.Top="10" Content="Exit" Click="btnExit_Click"/>
+        <Button x:Name="btnExit" Width="30" Height="30" Canvas.Left="340" Canvas.Top="10" Content="Exit" Click="btnExit_Click"/>
 
     </Canvas>
 </Window>

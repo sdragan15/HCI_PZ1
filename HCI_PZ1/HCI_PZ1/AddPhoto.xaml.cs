@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -93,6 +94,28 @@ namespace HCI_PZ1
             errSlika.Content = "link slike:";
         }
 
+        private void btnBrowse_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Izaberite sliku";
+
+            if(op.ShowDialog() == true)
+            {
+                try
+                {
+                    imgSlika.Source = new BitmapImage(new Uri(op.FileName));
+                    uriSlike = op.FileName.ToString();
+                    valid = true;
+                }
+                catch
+                {
+                    valid = false;
+                }
+                
+            }
+        }
+
+
 
 
         //Male fuje --------------------------------------------------------------------------------
@@ -106,6 +129,6 @@ namespace HCI_PZ1
             this.DragMove();
         }
 
-       
+        
     }
 }

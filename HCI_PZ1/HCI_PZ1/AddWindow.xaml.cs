@@ -17,11 +17,17 @@ namespace HCI_PZ1
 {
     public partial class AddWindow : Window
     {
+
+
         public AddWindow()
         {
             InitializeComponent();
 
+            cmbFontFamily.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             cmbDrzave.ItemsSource = Constants.Drzave;
+            cmbFontSize.ItemsSource = Constants.fontSizes;
+            cmbColor.ItemsSource = Constants.colors;
+
         }
 
         private void btnDodaj_Click(object sender, RoutedEventArgs e)
@@ -169,9 +175,68 @@ namespace HCI_PZ1
         }
 
 
+        private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            object temp = rtbEditor.Selection.GetPropertyValue(Inline.FontWeightProperty);
+            btnBold.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(FontWeights.Bold));
+
+            temp = rtbEditor.Selection.GetPropertyValue(Inline.FontStyleProperty);
+            btnItalic.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(FontStyles.Italic));
+
+            temp = rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
+            btnUnderline.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextDecorations.Underline));
+
+            temp = rtbEditor.Selection.GetPropertyValue(Inline.FontFamilyProperty);
+            cmbFontFamily.SelectedItem = temp;
+
+            temp = rtbEditor.Selection.GetPropertyValue(Inline.FontSizeProperty);
+            cmbFontSize.SelectedItem = temp;
+
+            temp = rtbEditor.Selection.GetPropertyValue(Inline.ForegroundProperty);
+            foreach(string s in Constants.colors)
+            {
+                if (temp.ToString().Equals(ColorConverter.ConvertFromString(s).ToString()))
+                {
+                    cmbColor.SelectedItem = s;
+                
+                    break;
+                }
+            }
+           
+
+        }
+
+        private void cmbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cmbFontFamily.SelectedItem != null && !rtbEditor.Selection.IsEmpty)
+            {
+                rtbEditor.Selection.ApplyPropertyValue(Inline.FontFamilyProperty, cmbFontFamily.SelectedItem);
+            }
+        }
+
+        private void cmbFontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cmbFontSize.SelectedItem != null && !rtbEditor.Selection.IsEmpty)
+            {
+                rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, cmbFontSize.SelectedItem);
+            }
+        }
+
+        private void cmbColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbColor.SelectedItem != null && !rtbEditor.Selection.IsEmpty)
+            {
+                rtbEditor.Selection.ApplyPropertyValue(Inline.ForegroundProperty, cmbColor.SelectedItem);
+            }
+        }
 
 
 
+
+
+
+
+        // Kratke fuje -------------------------------------------------------------------------------
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
@@ -183,6 +248,5 @@ namespace HCI_PZ1
             this.DragMove();
         }
 
-        
     }
 }
