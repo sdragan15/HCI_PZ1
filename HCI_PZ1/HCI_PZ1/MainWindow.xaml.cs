@@ -19,11 +19,18 @@ namespace HCI_PZ1
 {
     public partial class MainWindow : Window
     {
+        public static DataIO serializer = new DataIO();
+        public static Telefon viewTelefon; 
         public static BindingList<Telefon> listaTelefona { get; set; }
 
         public MainWindow()
         {
-            listaTelefona = new BindingList<Telefon>();
+
+            listaTelefona = serializer.DeSerializeObject<BindingList<Telefon>>(Constants.savePath);
+            if(listaTelefona == null)
+            {
+                listaTelefona = new BindingList<Telefon>();
+            }
 
             DataContext = this;
             InitializeComponent();
@@ -34,6 +41,30 @@ namespace HCI_PZ1
             AddWindow addWindow = new AddWindow();
             addWindow.ShowDialog();
         }
+
+        private void save(object sender, EventArgs e)
+        {
+            MainWindow.serializer.SerializeObject<BindingList<Telefon>>(MainWindow.listaTelefona, Constants.savePath);
+        }
+
+        private void btnIzbrisi_Click(object sender, RoutedEventArgs e)
+        {
+            listaTelefona.Remove((Telefon)dataGridPhones.SelectedItem);
+        }
+
+        private void btnPogledaj_Click(object sender, RoutedEventArgs e)
+        {
+            PogledajWindow.pogledTelefon = (Telefon)dataGridPhones.SelectedItem;
+            PogledajWindow pogledaj = new PogledajWindow();
+            
+            pogledaj.ShowDialog();
+        }
+
+
+
+
+
+
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

@@ -10,12 +10,13 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Closed="save">
     
     <Canvas Width="650" Height="400">
         <Path Stroke="Gray" StrokeThickness="2" Name="UIPath" Height="400" Stretch="Fill" Width="650">
             <Path.Fill>
-                <SolidColorBrush Color="White"/>
+                <ImageBrush ImageSource="Photo/background2.jpg"/>
             </Path.Fill>
 
             <Path.Data>
@@ -44,9 +45,18 @@
             </Path.Data>
         </Path>
 
-        <DataGrid x:Name="dataGridPhones" Width="550" Canvas.Left="50" Canvas.Top="60" Height="280" ItemsSource="{Binding listaTelefona}" AutoGenerateColumns="False" CanUserAddRows="False" RowHeight="50" >
+        <DataGrid x:Name="dataGridPhones" Width="550" Canvas.Left="50" Canvas.Top="60" Height="280" ItemsSource="{Binding listaTelefona}" AutoGenerateColumns="False" CanUserAddRows="False" RowHeight="67" IsReadOnly="True" HorizontalAlignment="Center">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Br." Binding="{Binding RedniBroj}" Width="100"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding RedniBroj}" Width="30">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                
                 <DataGridTemplateColumn Header="Image" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -60,12 +70,40 @@
                         <Style>
                             <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
                             <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Proizveden" Binding="{Binding GodinaProizvodnje}" Width="100"/>
-                <DataGridTextColumn Header="Drzava" Binding="{Binding Drzava}" Width="*"/> 
+                <DataGridTextColumn Header="Proizveden" Binding="{Binding GodinaProizvodnje}" Width="100">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
 
+                <DataGridTextColumn Header="Drzava" Binding="{Binding Drzava}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical" Margin="1">
+                                <Button x:Name="btnIzmeni" Content="Izmeni" Margin="0,0,0,1" Height="20"/>
+                                <Button x:Name="btnPogledaj" Content="Pogledaj" Margin="0,0,0,1" Height="20" Click="btnPogledaj_Click"/>
+                                <Button x:Name="btnIzbrisi" Content="Izbrisi" Margin="0,0,0,1" Height="20" Click="btnIzbrisi_Click" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

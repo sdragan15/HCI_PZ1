@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +19,6 @@ namespace HCI_PZ1
 {
     public partial class AddWindow : Window
     {
-
-
         public AddWindow()
         {
             InitializeComponent();
@@ -35,15 +35,29 @@ namespace HCI_PZ1
             if (validate())
             {
                 Telefon t1 = new Telefon();
-                t1.RedniBroj = ++Constants.redniBrojTelefona;
+                if(MainWindow.listaTelefona.Count != 0)
+                {
+                    t1.RedniBroj = MainWindow.listaTelefona[0].RedniBroj + 1;
+                }
+                else
+                {
+                    t1.RedniBroj = 1;
+                }
+                
                 t1.Naziv = tbModel.Text;
                 t1.Drzava = cmbDrzave.SelectedItem.ToString();
                 t1.GodinaProizvodnje = dpDate.SelectedDate.Value;
                 t1.Slika = AddPhoto.uriSlike;
+                t1.Opis = "rtbFile_" + t1.RedniBroj.ToString() + ".rtf";
+
+                TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+                FileStream stream = new FileStream(t1.Opis, FileMode.Create);
+                range.Save(stream, DataFormats.Rtf);
+                stream.Close();
 
                 AddPhoto.uriSlike = "";
 
-                MainWindow.listaTelefona.Add(t1);
+                MainWindow.listaTelefona.Insert(0, t1);
 
                 this.Close();
             }
@@ -201,8 +215,7 @@ namespace HCI_PZ1
                 
                     break;
                 }
-            }
-           
+            }           
 
         }
 
@@ -229,9 +242,6 @@ namespace HCI_PZ1
                 rtbEditor.Selection.ApplyPropertyValue(Inline.ForegroundProperty, cmbColor.SelectedItem);
             }
         }
-
-
-
 
 
 

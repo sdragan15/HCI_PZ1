@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Classes
 {
+    [Serializable]
     public class Telefon
     {
         public int RedniBroj { get; set; }

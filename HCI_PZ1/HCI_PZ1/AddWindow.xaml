@@ -75,7 +75,7 @@
     <Canvas Width="500" Height="400">
         <Path Stroke="Gray" StrokeThickness="2" Name="UIPath" Height="400" Stretch="Fill" Width="500">
             <Path.Fill>
-                <SolidColorBrush Color="White"/>
+                <ImageBrush ImageSource="Photo/background2.jpg"/>
             </Path.Fill>
 
             <Path.Data>
@@ -110,7 +110,7 @@
             <Label Name="lbDatum" Height="30" Margin="0,254,352,11" Content="Proizveden:"/>
 
             <TextBox x:Name="tbModel" Width="352" Height="30" Canvas.Left="105" Canvas.Top="65" HorizontalAlignment="Left" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" TextAlignment="Center" Margin="88,10,0,0" Foreground="Black" GotFocus="tbModel_GotFocus" LostFocus="tbModel_LostFocus"/>
-            <Label x:Name="errNaziv" Margin="88,12,0,205" Content="Unesite naziv telefona" Foreground="Gray" HorizontalAlignment="Center" IsHitTestVisible="False"/>
+            <Label x:Name="errNaziv" Margin="191,12,103,255" Content="Unesite naziv telefona" Foreground="Gray" HorizontalAlignment="Center" IsHitTestVisible="False"/>
 
             <DockPanel Margin="88,47,0,113" Background="Gray" >
                 <ToolBar DockPanel.Dock="Top">
@@ -120,9 +120,9 @@
                     <Separator/>
                     <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline" Width="20" Height="25" Content="U"/>
                     <Separator/>
-                    <ComboBox Name="cmbFontFamily" Width="90" SelectionChanged="cmbFontFamily_SelectionChanged" Margin="0"/>
+                    <ComboBox Name="cmbFontFamily" Width="128" SelectionChanged="cmbFontFamily_SelectionChanged" Margin="0"/>
                     <Separator/>
-                    <ComboBox Name="cmbFontSize" Width="30" Height="25" SelectionChanged="cmbFontSize_SelectionChanged" Margin="0"/>
+                    <ComboBox Name="cmbFontSize" Width="58" Height="25" SelectionChanged="cmbFontSize_SelectionChanged" Margin="0"/>
                     <Separator/>
                     <ComboBox x:Name="cmbColor" Width="50" Height="25" SelectionChanged="cmbColor_SelectionChanged">
                         <ComboBox.ItemTemplate>
