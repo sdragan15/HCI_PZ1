@@ -20,7 +20,8 @@ namespace HCI_PZ1
     public partial class MainWindow : Window
     {
         public static DataIO serializer = new DataIO();
-        public static Telefon viewTelefon; 
+        public static Telefon viewTelefon;
+        public static Telefon izmenjeniTelefon;
         public static BindingList<Telefon> listaTelefona { get; set; }
 
         public MainWindow()
@@ -60,6 +61,18 @@ namespace HCI_PZ1
             pogledaj.ShowDialog();
         }
 
+        private void btnIzmeni_Click(object sender, RoutedEventArgs e)
+        {
+            int num0 = listaTelefona.Count();
+            izmenjeniTelefon = (Telefon)dataGridPhones.SelectedItem;
+            EditWindow editWindow = new EditWindow();
+            editWindow.ShowDialog();
+
+            int num1 = listaTelefona.Count();
+            if(num0 < num1)
+                listaTelefona.Remove((Telefon)dataGridPhones.SelectedItem);
+        }
+
 
 
 
@@ -77,5 +90,6 @@ namespace HCI_PZ1
             this.Close();
         }
 
+        
     }
 }

@@ -97,7 +97,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical" Margin="1">
-                                <Button x:Name="btnIzmeni" Content="Izmeni" Margin="0,0,0,1" Height="20"/>
+                                <Button x:Name="btnIzmeni" Content="Izmeni" Margin="0,0,0,1" Height="20" Click="btnIzmeni_Click"/>
                                 <Button x:Name="btnPogledaj" Content="Pogledaj" Margin="0,0,0,1" Height="20" Click="btnPogledaj_Click"/>
                                 <Button x:Name="btnIzbrisi" Content="Izbrisi" Margin="0,0,0,1" Height="20" Click="btnIzbrisi_Click" />
                             </StackPanel>
