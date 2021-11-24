@@ -43,7 +43,7 @@ namespace HCI_PZ1
                     imgSlika.Source = new BitmapImage(new Uri(uriSlike));
                     valid = true;
                 }
-                catch (Exception ex)
+                catch
                 {
                     valid = false;
                 }
@@ -56,16 +56,14 @@ namespace HCI_PZ1
         private void tbSlika_SelectionChanged(object sender, RoutedEventArgs e)
         {
             string slika = tbSlika.Text;
-            uriSlike = slika;
             try
             {
                 imgSlika.Source = new BitmapImage(new Uri(slika));
                 valid = true;
             }
-            catch(Exception error)
+            catch
             {
                 valid = false;
-                Console.WriteLine(error.Message);
             }
             
         }
@@ -75,6 +73,7 @@ namespace HCI_PZ1
         {
             if(valid)
             {
+                uriSlike = tbSlika.Text;
                 this.Close();
             }
             else
@@ -104,7 +103,8 @@ namespace HCI_PZ1
                 try
                 {
                     imgSlika.Source = new BitmapImage(new Uri(op.FileName));
-                    uriSlike = op.FileName.ToString();
+                    tbSlika.Text = op.FileName.ToString();
+                    errSlika.Content = "";
                     valid = true;
                 }
                 catch

@@ -141,5 +141,11 @@
   <ItemGroup>
     <Resource Include="Photo\background2.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Photo\closeBtn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Photo\close-button2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

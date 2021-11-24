@@ -52,9 +52,11 @@
             <TextBox Name="lbDrzava" IsReadOnly="True"  Margin="10,92,253,170" TextWrapping="Wrap" Background="Transparent" BorderThickness="0" VerticalAlignment="Bottom"/>
         </Grid>
 
-        <Button x:Name="btnDodaj" Width="150" Height="30" Content="Zatvori" Canvas.Left="198" Canvas.Top="410" Click="btnDodaj_Click"/>
+        <Button x:Name="btnDodaj" Width="150" Height="30" Content="Zatvori" Canvas.Left="200" Canvas.Top="405" Click="btnDodaj_Click"/>
 
-        <Button x:Name="btnExit" Width="30" Height="30" Canvas.Left="374" Canvas.Top="10" Content="Exit" Click="btnExit_Click"/>
+        <Button x:Name="btnExit" Width="50" Height="50" Canvas.Left="365" Canvas.Top="10" Background="Transparent" Margin="0,0,0,0" BorderBrush="Transparent" Click="btnExit_Click">
+            <Image Source="Photo/close-button2.png" Width="45" Height="45"/>
+        </Button>
 
     </Canvas>
 </Window>

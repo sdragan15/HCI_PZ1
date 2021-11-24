@@ -154,9 +154,11 @@
         </Grid>
 
 
-        <Button x:Name="btnDodaj" Width="150" Height="30" Content="Dodaj" Canvas.Left="180" Canvas.Top="355" Click="btnDodaj_Click"/>
+        <Button x:Name="btnDodaj" Width="150" Height="30" Content="Izmeni" Canvas.Left="180" Canvas.Top="355" Click="btnDodaj_Click"/>
 
-        <Button x:Name="btnExit" Width="30" Height="30" Canvas.Left="340" Canvas.Top="10" Content="Exit" Click="btnExit_Click"/>
+        <Button x:Name="btnExit" Width="40" Height="40" Canvas.Left="335" Canvas.Top="5" Background="Transparent" Margin="0,0,0,0" BorderBrush="Transparent" Click="btnExit_Click">
+            <Image Source="Photo/close-button2.png" Width="35" Height="35"/>
+        </Button>
 
     </Canvas>
 </Window>

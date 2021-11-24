@@ -178,7 +178,7 @@ namespace HCI_PZ1
                 errSlika.Content = "";
                 errSlika.Foreground = Brushes.Gray;
             }
-            catch(Exception ex)
+            catch
             {
                 errSlika.Content = "Izaberite sliku";
                 errSlika.Foreground = Brushes.Red;
@@ -250,6 +250,7 @@ namespace HCI_PZ1
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
+            AddPhoto.uriSlike = "";
             this.Close();
         }
 
