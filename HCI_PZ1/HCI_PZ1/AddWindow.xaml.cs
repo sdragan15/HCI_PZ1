@@ -215,9 +215,15 @@ namespace HCI_PZ1
                 
                     break;
                 }
-            }           
+            }
+
+            TextRange textRange = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+            int br = textRange.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            sbText.Text = "reci u tekstu: " + br.ToString();
+
 
         }
+
 
         private void cmbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -259,5 +265,9 @@ namespace HCI_PZ1
             this.DragMove();
         }
 
+        private void rtbEditor_KeyDown_1(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

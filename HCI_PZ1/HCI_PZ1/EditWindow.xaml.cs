@@ -1,6 +1,7 @@
 ﻿using Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -65,6 +66,7 @@ namespace HCI_PZ1
                 t1.GodinaProizvodnje = dpDate.SelectedDate.Value;
                 t1.Slika = AddPhoto.uriSlike;
                 t1.Opis = "rtbFile_" + t1.RedniBroj.ToString() + ".rtf";
+                File.Delete("rtbFile_" + (t1.RedniBroj-1).ToString() + ".rtf");
 
                 TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
                 FileStream stream = new FileStream(t1.Opis, FileMode.Create);
@@ -232,6 +234,10 @@ namespace HCI_PZ1
                     break;
                 }
             }
+
+            TextRange textRange = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+            int br = textRange.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            sbText.Text = "reci u tekstu: " + br.ToString();
 
         }
 

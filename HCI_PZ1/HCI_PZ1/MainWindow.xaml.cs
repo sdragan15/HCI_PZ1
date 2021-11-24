@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,8 @@ namespace HCI_PZ1
 
         private void btnIzbrisi_Click(object sender, RoutedEventArgs e)
         {
+            Telefon tel = (Telefon)dataGridPhones.SelectedItem;
+            File.Delete(tel.Opis);
             listaTelefona.Remove((Telefon)dataGridPhones.SelectedItem);
         }
 
