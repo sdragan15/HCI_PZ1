@@ -22,11 +22,18 @@ namespace HCI_PZ1
     {
         public static DataIO serializer = new DataIO();
         public static Telefon viewTelefon;
-        public static Telefon izmenjeniTelefon;
+        public static int redniBrojIzmenjenogTelefona;
         public static BindingList<Telefon> listaTelefona { get; set; }
 
         public MainWindow()
         {
+            var values = typeof(Brushes).GetProperties().Select(p => new { Name = p.Name, Brush = p.GetValue(null) as Brush }).ToArray();
+            var brushName = values.Select(v => v.Name);
+            foreach(string name in brushName)
+            {
+                Constants.colors.Add(name);  
+            }
+            
 
             listaTelefona = serializer.DeSerializeObject<BindingList<Telefon>>(Constants.savePath);
             if(listaTelefona == null)
@@ -66,14 +73,15 @@ namespace HCI_PZ1
 
         private void btnIzmeni_Click(object sender, RoutedEventArgs e)
         {
-            int num0 = listaTelefona.Count();
-            izmenjeniTelefon = (Telefon)dataGridPhones.SelectedItem;
+            
+            
+            Telefon tel = (Telefon)dataGridPhones.SelectedItem;
+            redniBrojIzmenjenogTelefona = listaTelefona.IndexOf(tel);
+
             EditWindow editWindow = new EditWindow();
             editWindow.ShowDialog();
 
-            int num1 = listaTelefona.Count();
-            if(num0 < num1)
-                listaTelefona.Remove((Telefon)dataGridPhones.SelectedItem);
+            dataGridPhones.Items.Refresh();
         }
 
 

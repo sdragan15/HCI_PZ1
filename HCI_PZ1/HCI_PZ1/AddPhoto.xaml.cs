@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -102,8 +103,11 @@ namespace HCI_PZ1
             {
                 try
                 {
-                    imgSlika.Source = new BitmapImage(new Uri(op.FileName));
-                    tbSlika.Text = op.FileName.ToString();
+
+                    string path = op.FileName;
+                    
+                    imgSlika.Source = new BitmapImage(new Uri(path));
+                    tbSlika.Text = path;
                     errSlika.Content = "";
                     valid = true;
                 }

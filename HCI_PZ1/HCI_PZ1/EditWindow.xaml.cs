@@ -32,14 +32,14 @@ namespace HCI_PZ1
             cmbColor.ItemsSource = Constants.colors;
 
             TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
-            FileStream stream = new FileStream(MainWindow.izmenjeniTelefon.Opis, FileMode.Open);
+            FileStream stream = new FileStream(MainWindow.listaTelefona[MainWindow.redniBrojIzmenjenogTelefona].Opis, FileMode.Open);
             range.Load(stream, DataFormats.Rtf);
             stream.Close();
 
-            cmbDrzave.SelectedItem = MainWindow.izmenjeniTelefon.Drzava;
-            dpDate.SelectedDate = MainWindow.izmenjeniTelefon.GodinaProizvodnje;
-            tbModel.Text = MainWindow.izmenjeniTelefon.Naziv;
-            AddPhoto.uriSlike = MainWindow.izmenjeniTelefon.Slika;
+            cmbDrzave.SelectedItem = MainWindow.listaTelefona[MainWindow.redniBrojIzmenjenogTelefona].Drzava;
+            dpDate.SelectedDate = MainWindow.listaTelefona[MainWindow.redniBrojIzmenjenogTelefona].GodinaProizvodnje;
+            tbModel.Text = MainWindow.listaTelefona[MainWindow.redniBrojIzmenjenogTelefona].Naziv;
+            AddPhoto.uriSlike = MainWindow.listaTelefona[MainWindow.redniBrojIzmenjenogTelefona].Slika;
             imgSlika.Source = new BitmapImage(new Uri(AddPhoto.uriSlike));
             errLabel.Content = "";
             errNaziv.Content = "";
@@ -51,22 +51,13 @@ namespace HCI_PZ1
         {
             if (validate())
             {
-                Telefon t1 = new Telefon();
-                if (MainWindow.listaTelefona.Count != 0)
-                {
-                    t1.RedniBroj = MainWindow.listaTelefona[0].RedniBroj + 1;
-                }
-                else
-                {
-                    t1.RedniBroj = 1;
-                }
+                Telefon t1 = MainWindow.listaTelefona[MainWindow.redniBrojIzmenjenogTelefona];
 
                 t1.Naziv = tbModel.Text;
                 t1.Drzava = cmbDrzave.SelectedItem.ToString();
                 t1.GodinaProizvodnje = dpDate.SelectedDate.Value;
                 t1.Slika = AddPhoto.uriSlike;
                 t1.Opis = "rtbFile_" + t1.RedniBroj.ToString() + ".rtf";
-                File.Delete("rtbFile_" + (t1.RedniBroj-1).ToString() + ".rtf");
 
                 TextRange range = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
                 FileStream stream = new FileStream(t1.Opis, FileMode.Create);
@@ -74,8 +65,6 @@ namespace HCI_PZ1
                 stream.Close();
 
                 AddPhoto.uriSlike = "";
-
-                MainWindow.listaTelefona.Insert(0, t1);
 
                 this.Close();
             }
@@ -214,6 +203,9 @@ namespace HCI_PZ1
 
             temp = rtbEditor.Selection.GetPropertyValue(Inline.FontStyleProperty);
             btnItalic.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(FontStyles.Italic));
+
+            /* TextDecorationCollection currentValue = this.rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty) as TextDecorationCollection;
+             btnUnderline.IsChecked = (currentValue == DependencyProperty.UnsetValue) ? false : currentValue != null && currentValue.Contains(TextDecorations.Underline);*/
 
             temp = rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
             btnUnderline.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextDecorations.Underline));
