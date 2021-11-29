@@ -135,13 +135,15 @@
                     </ComboBox>
                 </ToolBar>
 
-                <RichTextBox x:Name="rtbEditor" DockPanel.Dock="Top" Margin="3,0" Width="350" Height="80" SelectionChanged="rtbEditor_SelectionChanged"/>
+                <RichTextBox x:Name="rtbEditor" DockPanel.Dock="Top" Margin="3,0" Width="350" Height="80" SelectionChanged="rtbEditor_SelectionChanged" GotFocus="rtbEditor_GotFocus" LostFocus="rtbEditor_LostFocus"/>
                 <StatusBar DockPanel.Dock="Bottom" Width="345" Height="20" Margin="4,0,3,0">
                     <StatusBarItem>
                         <TextBlock x:Name="sbText"/>
                     </StatusBarItem>
                 </StatusBar>
             </DockPanel>
+
+            <Label x:Name="errRtb" Height="30" Content="" Margin="88,104,0,161" HorizontalAlignment="Center" Foreground="Gray" IsHitTestVisible="False"/>
 
             <ComboBox x:Name="cmbDrzave" Margin="88,202,175,65" GotFocus="cmbDrzave_GotFocus" LostFocus="cmbDrzave_LostFocus"/>
             <Label x:Name="errLabel" Margin="88,202,194,65" Content="Izaberite drzavu" Foreground="Gray" HorizontalAlignment="Center" IsHitTestVisible="False" Width="158"/>

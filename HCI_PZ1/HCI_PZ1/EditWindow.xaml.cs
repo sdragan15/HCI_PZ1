@@ -119,6 +119,20 @@ namespace HCI_PZ1
                 errSlika.Foreground = Brushes.Gray;
             }
 
+            TextRange textRange = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+
+            if (textRange.Text.Trim().Equals(""))
+            {
+                valid = false;
+                errRtb.Content = "Unesite opis";
+                errRtb.Foreground = Brushes.Red;
+            }
+            else
+            {
+                errRtb.Content = "";
+                errRtb.Foreground = Brushes.Gray;
+            }
+
             return valid;
         }
 
@@ -254,6 +268,25 @@ namespace HCI_PZ1
             if (cmbColor.SelectedItem != null && !rtbEditor.Selection.IsEmpty)
             {
                 rtbEditor.Selection.ApplyPropertyValue(Inline.ForegroundProperty, cmbColor.SelectedItem);
+            }
+        }
+
+        private void rtbEditor_GotFocus(object sender, RoutedEventArgs e)
+        {
+            errRtb.Content = "";
+        }
+
+        private void rtbEditor_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextRange textRange = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
+            if (textRange.Text.Trim().Equals(""))
+            {
+                errRtb.Content = "Unesite opis";
+                errRtb.Foreground = Brushes.Gray;
+            }
+            else
+            {
+                errRtb.Content = "";
             }
         }
 
