@@ -231,8 +231,9 @@ namespace HCI_PZ1
                 }
             }
 
+            int br = 0;
             TextRange textRange = new TextRange(rtbEditor.Document.ContentStart, rtbEditor.Document.ContentEnd);
-            int br = textRange.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            br = textRange.Text.Split(new char[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Length;
             sbText.Text = "reci u tekstu: " + br.ToString();
 
 
